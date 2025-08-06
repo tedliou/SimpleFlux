@@ -2,27 +2,25 @@ import json
 import os
 
 class Config:
-    def __init__(self, path="config.json"):
+    def __init__(self, path):
         self.path = path
         self.data = {
             "name": "",
             "version": "",
-            "inputs": [],
-            "input_params": {},
-            "outputs": [],
-            "output_params":{},
-            "process": [],
-            "process_params": {}
+            "window_width": 0,
+            "window_height": 0,
+            "lux_path": "",
+            "ffmpeg_path": "",
+            "output_path": "",
         }
         self.is_new_file = self.load()
     
-    # 載入設定檔
+    # Load
     def load(self):
         file_exist = os.path.exists(self.path)
         is_new_file = True
         cfg = None
         
-        # 如檔案存在，嘗試讀取內容
         if file_exist:
             try:
                 with open(self.path, "r", encoding="utf-8") as file:
@@ -32,93 +30,67 @@ class Config:
                 is_new_file = False
 
             except json.JSONDecodeError as e:
-                # 讀取時發生 JSON 剖析失敗，設定 is_new_file 為 True 以建立預設參數
                 print(e.msg)
                 is_new_file = True
 
             except Exception as e:
-                # 讀取時發生未知錯誤，，設定 is_new_file 為 True 以建立預設參數
                 print(e)
                 is_new_file = True
         
-        # 使用預設參數並存檔
         if is_new_file:
             self.save()
 
         return is_new_file
     
     
-    # 儲存設定檔
+    # Save
     def save(self):
         with open(self.path, "w", encoding="utf-8") as file:
             json.dump(self.data, file, indent=4, ensure_ascii=False)
     
-    # 設定模組名稱
-    def set_name(self, module_name):
-        self.data["name"] = module_name
+    # Name
+    def set_name(self, name):
+        self.data["name"] = name
         self.save()
+    def get_name(self):
+        return self.data["name"]
     
-    # 設定模組版本
-    def set_version(self, version_value):
-        self.data["version"] = version_value
+    # Version
+    def set_version(self, version):
+        self.data["version"] = version
         self.save()
+    def get_version(self):
+        return self.data["version"]
     
-
-    # 設定輸入方法
-    def set_inputs(self, param_value):
-        self.data["inputs"] = param_value
+    # Window
+    def set_window_width(self, width):
+        self.data["window_width"] = width
         self.save()
-
-    # 取得輸入方法
-    def get_inputs(self):
-        return self.data["inputs"]
-    
-
-    # 設定輸入參數
-    def set_input_params(self, param_name, param_value):
-        self.data["input_params"][param_name] = param_value
+    def get_window_width(self):
+        return self.data["window_width"]
+    def set_window_height(self, height):
+        self.data["window_height"] = height
         self.save()
+    def get_window_height(self):
+        return self.data["window_height"]
     
-    # 取得輸入參數
-    def get_input_params(self, param_name):
-        return self.data["input_params"][param_name]
-    
-
-    # 設定輸出方法
-    def set_outputs(self, param_value):
-        self.data["outputs"] = param_value
+    # Lux
+    def set_lux_path(self, lux_path):
+        self.data["lux_path"] = lux_path
         self.save()
-
-    # 取得輸出方法
-    def get_outputs(self):
-        return self.data["outputs"]
+    def get_lux_path(self):
+        return self.data["lux_path"]
     
-
-    # 設定輸出參數
-    def set_output_params(self, param_name, param_value):
-        self.data["output_params"][param_name] = param_value
+    # FFMPEG
+    def set_ffmpeg_path(self, ffmpeg_path):
+        self.data["ffmpeg_path"] = ffmpeg_path
         self.save()
+    def get_ffmpeg_path(self):
+        return self.data["ffmpeg_path"]
     
-    # 取得輸出參數
-    def get_output_params(self, param_name):
-        return self.data["output_params"][param_name]
-    
-
-    # 設定處理方法
-    def set_process(self, param_value):
-        self.data["process"] = param_value
+    # Output
+    def set_output_path(self, output_path):
+        self.data["output_path"] = output_path
         self.save()
-
-    # 取得處理方法
-    def get_process(self):
-        return self.data["process"]
-    
-
-    # 設定處理參數
-    def set_process_params(self, param_name, param_value):
-        self.data["process_params"][param_name] = param_value
-        self.save()
-    
-    # 取得輸出參數
-    def get_process_params(self, param_name):
-        return self.data["process_params"][param_name]
+    def get_output_path(self):
+        return self.data["output_path"]
