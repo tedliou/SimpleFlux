@@ -1,75 +1,77 @@
 # 🚀 SimpleLux
 
-這是一個基於 [iawia002/lux](https://github.com/iawia002/lux) 開發的多平台影音下載工具，目前專注於 **YouTube** 平台的影片下載。此工具提供影片 (.mp4) 與音樂 (.mp3) 兩種下載格式，並擁有一個簡潔的圖形介面。
+English | [中文](README-zh.md)
 
-本專案為 Side Project，以開源形式發布，不作任何營利，歡迎大家自由學習與使用。
+This is a multi-platform video download tool based on [iawia002/lux](https://github.com/iawia002/lux). It currently focuses on downloading videos from **YouTube**. The tool offers two download formats: video (.mp4) and music (.mp3), and features a simple graphical user interface.
 
-### ✨ 主要功能
+This project is a personal side project, released as open-source for learning and use, and is not intended for any commercial purpose.
 
-  * 支援 **YouTube** 影片與音樂下載。
-  * 可選擇下載為 `.mp4` 影片格式。
-  * 可選擇下載為 `.mp3` 音樂格式 (自動轉檔)。
-  * 簡單易用的圖形使用者介面。
-  * 開源發布，歡迎學習與貢獻。
+### ✨ Key Features
+
+  * Supports **YouTube** video and music downloads.
+  * Option to download in `.mp4` video format.
+  * Option to download in `.mp3` music format (with automatic conversion).
+  * Simple and easy-to-use graphical user interface.
+  * Open-source, welcoming to learners and contributors.
 
 -----
 
-## 🛠️ 安裝說明
+## 🛠️ Installation Guide
 
-SimpleLux 提供兩種安裝方式，您可以選擇最適合您的方法：
+SimpleLux offers two installation methods. You can choose the one that suits you best.
 
-### 方法一：從原始碼編譯
+### Method 1: Compile from Source
 
-此方法會自動安裝所有必要的依賴套件並編譯程式，是推薦的安裝方式。
+This is the recommended method as it automatically installs all necessary dependencies and compiles the program.
 
-#### 必要依賴
+#### Prerequisites
 
-  * [**scoop**](https://scoop.sh/): Windows 套件管理器，用於安裝 `ffmpeg` 和 `go`。
-  * **ffmpeg**: 用於影片轉檔。
-  * **go**: 用於編譯 Lux 和 SimpleLux。
-  * **Git**: 用於克隆 lux 專案。
-  * **Python**: 用於執行 `uv` 等腳本。
+  * [**scoop**](https://scoop.sh/): A Windows package manager used to install `ffmpeg` and `go`.
+  * **ffmpeg**: For video conversion.
+  * **go**: For compiling Lux and SimpleLux.
+  * **Git**: For cloning the lux project.
+  * **Python**: For executing scripts like `uv`.
 
-#### 安裝步驟
+#### Installation Steps
 
-1.  克隆此專案。
-2.  執行專案目錄下的 `install.bat`。
+1.  Clone this project.
+2.  Run `install.bat` from the project directory.
 
-**※ Scoop 安裝問題**
+**※ Troubleshooting Scoop Installation**
 
-若您的 Windows 版本較舊，在安裝 Scoop 時可能出現 `Invoke-Expression` 錯誤。您可以安裝 **PowerShell 7** 來解決：
+If you encounter an `Invoke-Expression` error during Scoop installation on an older Windows version, you can resolve it by installing **PowerShell 7**:
 
 ```bash
 winget install Microsoft.PowerShell
 ```
 
-安裝完成後，使用以下指令安裝 Scoop：
+After installation, use the following command to install Scoop:
 
 ```bash
 pwsh Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
 
-接著重新執行 `install.bat` 即可。
+Then, you can re-run `install.bat`.
 
-`install.bat` 執行完成後，SimpleLux 會自動啟動，並在您的 Windows 使用者桌面建立一個捷徑，方便您日後快速啟動。
+Once `install.bat` is complete, SimpleLux will start automatically, and a shortcut will be created on your Windows user desktop for easy access.
 
-### 方法二：使用預先編譯好的執行檔
+### Method 2: Use Pre-compiled Executable
 
-此版本不需編譯，但您必須手動安裝 `ffmpeg` 並設定環境變數。
+This version does not require compilation, but you must manually install `ffmpeg` and configure environment variables.
 
-1.  **安裝 ffmpeg**
-    Scoop 仍然是個方便的安裝方式：
+1.  **Install ffmpeg**
+    Scoop is still a convenient way to install it:
     ```bash
     scoop install ffmpeg
     ```
-2.  **解壓縮並執行**
-    解壓縮下載的檔案，然後直接執行 `SimpleLux.exe` 即可使用。
+2.  **Unzip and Run**
+    Unzip the downloaded file and run `SimpleLux.exe` to use the tool.
 
 -----
 
-## ⚙️ 設定檔 (config.json)
+## ⚙️ Configuration File (config.json)
 
-SimpleLux 透過 `config.json` 檔案來進行一些基本設定，預設內容如下：
+SimpleLux uses a `config.json` file for some basic settings. The default content is as follows:
 
 ```json
 {
@@ -83,49 +85,49 @@ SimpleLux 透過 `config.json` 檔案來進行一些基本設定，預設內容�
 }
 ```
 
-  * `name`: 視窗標題名稱。
-  * `version`: 程式版本號 (目前無實際作用)。
-  * `window_width`: 視窗寬度 (單位為像素)。
-  * `window_height`: 視窗高度 (單位為像素)。
-  * `lux_path`: Lux 執行檔的路徑。
-  * `ffmpeg_path`: FFMPEG 執行檔的路徑。若已透過 Scoop 安裝並設定好環境變數，僅需填寫 `"ffmpeg"` 即可。
-  * `output_path`: 下載檔案的儲存資料夾名稱。
+  * `name`: The title of the application window.
+  * `version`: The application version number (currently has no practical effect).
+  * `window_width`: The width of the window (in pixels).
+  * `window_height`: The height of the window (in pixels).
+  * `lux_path`: The path to the Lux executable.
+  * `ffmpeg_path`: The path to the FFMPEG executable. If you installed it with Scoop and have set the environment variables, simply `"ffmpeg"` will suffice.
+  * `output_path`: The folder name where downloaded files will be saved.
 
 -----
 
-## 🖥️ 軟體操作說明
+## 🖥️ User Guide
 
-### 啟動程式
+### Starting the Program
 
-  * **從原始碼編譯**: 執行桌面上的 SimpleLux 捷徑。
-  * **預先編譯版本**: 直接執行 `SimpleLux.exe`。
+  * **From Source**: Run the SimpleLux shortcut on your desktop.
+  * **Pre-compiled Version**: Run `SimpleLux.exe` directly.
 
-### 操作流程
+### Operation Flow
 
-1.  **選擇下載格式**
-    在軟體視窗中，選擇您想要的下載格式：**Video** 或 **Music**。
+1.  **Select Download Format**
+    In the application window, select your desired download format: **Video** or **Music**.
 
-2.  **貼上 YouTube 網址**
-    在文字輸入框中，使用 `Ctrl + V` 貼上 YouTube 影片網址。請注意，目前僅支援 `https://www.youtube.com/watch?v=ntIJMS1Jj7c` 這類乾淨的網址，請手動刪除多餘的 `&` 之後的參數。
+2.  **Paste YouTube URL**
+    Use `Ctrl + V` to paste a YouTube video URL into the text box. Please note that it currently only supports clean URLs like `https://www.youtube.com/watch?v=ntIJMS1Jj7c`. You should manually remove any extra query parameters after the `&`.
 
-3.  **按下下載按鈕**
-    點擊 **Download** 按鈕開始下載。
+3.  **Click the Download Button**
+    Click the **Download** button to start the process.
 
-      - 程式會自動呼叫 Lux 進行下載。
-      - 如果您選擇 **Music** 格式，下載完成後會自動呼叫 FFMPEG 將檔案轉為 `.mp3`。
-      - *提示*: 某些影片下載可能會被 Google 阻擋，進度卡住時可嘗試更換 IP 或使用代理伺服器。
+      - The program will automatically call Lux to perform the download.
+      - If you selected the **Music** format, FFMPEG will be called automatically after the download is complete to convert the file to `.mp3`.
+      - *Note*: Some video downloads might be blocked by Google, causing the progress to stall. You can try changing your IP or using a proxy to bypass this restriction.
 
-4.  **完成**
-    下載與轉檔完成後，程式會自動開啟已下載檔案的資料夾，您即可獲得您的 YouTube 媒體檔案。
+4.  **Completion**
+    After the download and conversion are finished, the folder containing the downloaded files will open automatically, giving you access to your YouTube media files.
 
 ![](doc/image.png)
 
 -----
 
-## 🤝 如何貢獻
+## 🤝 How to Contribute
 
-如果您對本專案有任何建議或發現 Bug，歡迎隨時提出 **Issue** 或提交 **Pull Request**。
+If you have any suggestions or find bugs, feel free to open an **Issue** or submit a **Pull Request**.
 
-## 📞 聯絡我們
+## 📞 Contact
 
-若有其他問題，請透過 GitHub Issue 聯繫。
+For any other questions, please reach out via GitHub Issues.
